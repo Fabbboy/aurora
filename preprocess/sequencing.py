@@ -36,7 +36,6 @@ def create_sequences(
     tokenized_data,
     max_context_length,
     max_target_length,
-    step_by_word=True,
     pad_token=1,
     unk_token=3,
 ):
@@ -50,7 +49,6 @@ def create_sequences(
         tokenized_data (list): Flat list of tokenized input (as token IDs).
         max_context_length (int): Maximum length for the context.
         max_target_length (int): Maximum length for the target.
-        step_by_word (bool): Whether to generate new sequences stepping one token at a time.
         pad_token (int): The token ID used for padding.
         unk_token (int): The token ID used for unknowns.
 
@@ -79,11 +77,7 @@ def create_sequences(
 
         sequences.append((context, target))
 
-        if step_by_word:
-            i += 1
-        else:
-            # Do not skip already processed tokens
-            i += max_context_length
+        i += 1
 
     return sequences
 

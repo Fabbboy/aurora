@@ -1,5 +1,5 @@
-from tokenizer import BPETokenizer
-from sequencing import create_sequences, numperize
+from preprocess.tokenizer import BPETokenizer
+from preprocess.sequencing import create_sequences, numperize
 
 dataset = [
     "some text",
@@ -38,10 +38,4 @@ for i, (context, target) in enumerate(sequences):
     print(f"Sequence {i}:")
     print(f"Context: {contexts_array[i]}")
     print(f"Target: {targets_array[i]}")
-    print(
-        f"Decoded context: {[tokenizer.decode([token_id]) for token_id in contexts_array[i]]}"
-    )
-    print(
-        f"Decoded target: {[tokenizer.decode([token_id]) for token_id in targets_array[i]]}"
-    )
     print()

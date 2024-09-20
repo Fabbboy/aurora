@@ -1,12 +1,12 @@
 import torch.nn as nn
-from MultiHeadAttention import MultiHeadAttention
-from FeedForward import FeedForward
+from .MultiHeadAttention import MultiHeadAttention
+from .FeedForward import FeedForward
 
 class DecoderBlock(nn.Module):
-    def __init__(self, embed_dim, num_heads, ff_dim):
+    def __init__(self, embed_dim, num_heads, ff_dim, dropout=0.1):
         super().__init__()
         self.attention = MultiHeadAttention(embed_dim, num_heads)
-        self.feed_forward = FeedForward(embed_dim, ff_dim)
+        self.feed_forward = FeedForward(embed_dim, ff_dim, dropout)
         self.norm1 = nn.LayerNorm(embed_dim)
         self.norm2 = nn.LayerNorm(embed_dim)
         self.dropout = nn.Dropout(0.1)

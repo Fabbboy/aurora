@@ -36,6 +36,7 @@ def create_sequences(
     tokenized_data,
     max_context_length,
     max_target_length,
+    skip_processed=False,
     pad_token=1,
     unk_token=3,
 ):
@@ -77,7 +78,7 @@ def create_sequences(
 
         sequences.append((context, target))
 
-        i += 1
+        i += max_context_length if skip_processed else 1
 
     return sequences
 
